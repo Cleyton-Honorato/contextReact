@@ -1,29 +1,18 @@
-import React, { createContext, useContext } from 'react';
-import './App.css';
+import React from 'react';
+import { Router } from 'react-router-dom';
 
-const Context = createContext();
+import Routes from './routes';
+import history from './history';
+
+import { AuthProvider } from './Context/AuthContext';
 
 function App() {
-  const theme = 'dark';
-
   return (
-    <div className="App">
-      <Context.Provider value={theme}>
-        <Login />
-      </Context.Provider>
-    </div>
-  );
-}
-
-function Login() {
-  return <Button />;
-}
-
-function Button() {
-  const theme = useContext(Context);
-
-  return (
-    <button>{theme}</button>
+    <AuthProvider>
+      <Router history={history}>
+        <Routes />
+      </Router>
+    </AuthProvider>
   );
 }
 
