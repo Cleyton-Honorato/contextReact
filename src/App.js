@@ -1,25 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { createContext, useContext } from 'react';
 import './App.css';
 
+const Context = createContext();
+
 function App() {
+  const theme = 'dark';
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Context.Provider value={theme}>
+        <Login />
+      </Context.Provider>
     </div>
+  );
+}
+
+function Login() {
+  return <Button />;
+}
+
+function Button() {
+  const theme = useContext(Context);
+
+  return (
+    <button>{theme}</button>
   );
 }
 
